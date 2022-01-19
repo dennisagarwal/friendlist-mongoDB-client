@@ -10,7 +10,7 @@ function App() {
 
   const addFriend = () => {
     axios
-      .post("http://localhost:8000/addfriend", { name: name, age: age })
+      .post("https://friendlist-mongodb.herokuapp.com/addfriend", { name: name, age: age })
       .then((response) => {
         setlistOfFriends([...listOfFriends, { _id:response.data._id, name: name, age: age }]);
         console.log("it worked");
@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     {
       axios
-        .get("http://localhost:8000/read")
+        .get("https://friendlist-mongodb.herokuapp.com/read")
         .then((response) => {
           console.log(response.data);
           setlistOfFriends(response.data);
@@ -37,7 +37,7 @@ function App() {
   const updateFriend = (id) => {
     const newAge = prompt("Enter New Age ! : ");
     axios
-      .put("http://localhost:8000/update", { newAge: newAge, id: id })
+      .put("https://friendlist-mongodb.herokuapp.com/update", { newAge: newAge, id: id })
       .then(() => {
         setlistOfFriends(
           listOfFriends.map((val) => {
@@ -51,7 +51,7 @@ function App() {
   };
 
   const deleteFriend = (id)=>{
-    axios.delete(`http://localhost:8000/delete/${id} `).then(()=>{
+    axios.delete(`https://friendlist-mongodb.herokuapp.com/delete/${id} `).then(()=>{
       setlistOfFriends(
         listOfFriends.filter((val)=>{
       return val._id != id
